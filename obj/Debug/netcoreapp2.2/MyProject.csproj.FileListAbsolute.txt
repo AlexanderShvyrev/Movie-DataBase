@@ -1,0 +1,81 @@
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.deps.json
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.runtimeconfig.json
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.runtimeconfig.dev.json
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.dll
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.pdb
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.Views.dll
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/bin/Debug/netcoreapp2.2/MyProject.Views.pdb
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.csprojAssemblyReference.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.csproj.CoreCompileInputs.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorAssemblyInfo.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorAssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.AssemblyInfoInputs.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.AssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.TagHelpers.input.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.TagHelpers.output.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorCoreGenerate.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Dash.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Login.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorTargetAssemblyInfo.cache
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorTargetAssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.Views.pdb
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.dll
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.pdb
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/MyProject.csproj.CopyComplete
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Nav.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Add.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavInAdd.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Browse.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavInBrowse.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Search.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_NavSearch.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/Coding_Dojo/C_Sharp/MySql EntityFramework/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Movie.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.deps.json
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.runtimeconfig.json
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.runtimeconfig.dev.json
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.dll
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.pdb
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.Views.dll
+/Users/alexandershvyrev/Desktop/MyProject/bin/Debug/netcoreapp2.2/MyProject.Views.pdb
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.csprojAssemblyReference.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.csproj.CoreCompileInputs.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorAssemblyInfo.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorAssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.AssemblyInfoInputs.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.AssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.TagHelpers.input.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.TagHelpers.output.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorCoreGenerate.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Add.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Browse.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Dash.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Login.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Movie.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Search.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_NavMovie.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_NavSearch.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Nav.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavInAdd.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavInBrowse.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorTargetAssemblyInfo.cache
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.RazorTargetAssemblyInfo.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.Views.pdb
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.dll
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.pdb
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.csproj.CopyComplete

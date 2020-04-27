@@ -1,0 +1,36 @@
+
+@model Movie
+
+
+<div class="jumbotron p-0 pb-5 pl-5 pr-5">
+    <partial name="_Nav"/>
+    <h4 style="text-align:center;">Welcome to All Moviezz database, @ViewBag.FirstName!</h4>
+    <h5 style="text-align:center;">Here are 3 recently uploaded movies:</h5>
+    <hr>
+        @foreach(var m in ViewBag.AllMovies)
+        {
+            var ImagePath="~/images/" + (m.ImagePath ?? "skitterphoto.jpg");
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="card-title"><h4>@m.Title</h4></div>
+                    <div class="card-image">
+                        <img class="imageThumbnail" src='@ImagePath' asp-append-version="true"/>
+                    </div>
+                    <p><strong>Year </strong>@m.Year</p>
+                    <p><strong>Director </strong>@m.Director</p>
+                    @{
+                        string Rating=$"{m.Rating}";
+                    }
+                    <p><strong>Rating </strong>@Rating.Substring(0,3)</p>
+                    <p><strong>Cast </strong>@m.Stars</p>
+                    <p><strong>Description </strong>@m.Description</p>
+                    <p><strong>Uploaded on </strong>@m.CreatedAt.ToShortDateString()</p>
+                    foreach (var c in m.Comments)
+                    {
+                        <p>@c.Content</p>
+                    }
+                    <partial name="_Comment" model="new Comment() {MovieId = m.MovieId}"></partial>
+                </div>
+            </div>
+        }
+</div>
