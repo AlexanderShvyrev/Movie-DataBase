@@ -8,6 +8,8 @@ namespace MyProject.Models
 {
     public class MovieCreate
     {
+        // [Key]
+        public int UserId{get; set;}
         [Required]
         public string Title {get; set;}
         [Required]
@@ -23,6 +25,8 @@ namespace MyProject.Models
         public string Stars{get; set;}
         [Required]
         public string Description{get; set;}
+        public User Creator{get; set;}
+        
         // [Required]
         public IFormFile Image{get; set;}
 

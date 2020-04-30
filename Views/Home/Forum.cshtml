@@ -1,0 +1,90 @@
+
+<partial name="_NavForum"/>
+<div class="jumbotron">
+    <h1>Welcome To MovieGuru Forum</h1> 
+</div>
+@model Message
+
+<div class="row justify-content-end">
+<form asp-action="CreateMessage" class="col-md-6 " method="post">
+    <p>
+        <h5>Post a Message</h5>
+        <p><span asp-validation-for="MessagePost" class="text-danger"></span></p>
+        <textarea asp-for="MessagePost" class="form-control" id="" cols="10" rows="2"></textarea>
+        <br>
+        <input type="submit" value="Post a message" class="btn btn-block btn-outline-primary">
+    </p>
+</form>
+</div>
+
+
+@foreach (var item in ViewBag.AllMessages)
+{
+
+<div class="card border-success mb-3" style="max-width: 22rem;">
+    <div class="card-header">@item.MessageCreator.FirstName  @item.CreatedAt.ToShortDateString() @item.CreatedAt.ToShortTimeString()</div>
+        <div class="card-body">
+            <p class="card-text">@item.MessagePost</p>
+        </div>
+</div>
+
+    if(item.MessageCreator.UserId == ViewBag.User.UserId)
+        {
+            <a class="btn btn-sm btn-outline-info" id="remove_message" href="/destroy/@item.MessageId">Delete Message</a>
+        }
+
+    <button class="btn btn-sm btn-outline-warning" id="@item.MessageId" onclick="toggleComment(this)">Hide/Show Comments</button><br>
+    <partial name="_CommentForum" model="new MComment(){MessageId = @item.MessageId}"></partial>
+
+<div class="row justify-content-center">  
+    <div id="@item.MessageId/PostedComments"><br>
+        @foreach (var c in item.PostedComments)
+        {
+        <div class="card border-warning  mb-3" style="max-width: 25rem;">
+                <div class="card-body">
+            <div class="card-header">@c.MUser.FirstName replied: </div>
+                    <p class="card-text">@c.MContent</p>
+                </div>
+        </div>
+                    @if(c.MUser.UserId == ViewBag.User.UserId)
+                    {
+                    <a class="btn btn-sm btn-outline-danger mb-3" id="delete_comment" href="/kill/@c.MCommentId">Delete Comment</a><br>
+                    }
+                }
+        </div>
+        </div>
+    
+        
+}
+<script>
+        const links = document.querySelectorAll('#delete_comment');
+
+        links.forEach((link) => {
+            link.addEventListener("click", function(event) {
+            event.preventDefault();
+            const link = event.target.href;
+        
+            var r = confirm("Are you sure you want to remove your comment?");
+        
+            if (r == true) {
+                window.location.href = link;
+            }
+        });
+    })
+</script>
+<script>
+    const a_link = document.querySelectorAll('#remove_message');
+
+        a_link.forEach((a_link) => {
+            a_link.addEventListener("click", function(event) {
+            event.preventDefault();
+            const a_link = event.target.href;
+        
+            var r = confirm("Are you sure you want to remove your message?");
+        
+            if (r == true) {
+                window.location.href = a_link;
+            }
+        });
+    })
+</script>

@@ -8,7 +8,10 @@ namespace MyProject.Models
 
         public DbSet<User> Users{get; set;}
         public DbSet<Movie> Movies {get; set;}
-
+        public DbSet<Banana> Bananas{get; set;}
         public DbSet<Comment> Comments {get;set;}
+        public DbSet<MComment> MComments {get;set;}
+
+        public DbSet<Message> Messages {get;set;}
     }
 }

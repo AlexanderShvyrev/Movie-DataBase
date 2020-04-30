@@ -1,0 +1,15 @@
+@model Comment
+
+
+
+<form action="/CreateComment/@Model.MovieId" class="form-group" method="post">
+    <p>
+        <p><span asp-validation-for="Content" class="text-danger"></span></p>
+        <p>
+        <textarea asp-for="Content" class="form-control" id="" cols="10" rows="2"></textarea>
+        </p>
+        <p>
+        <input type="submit" value="Post a Comment" class="btn btn-outline-success">
+        </p>
+    </p>
+</form>

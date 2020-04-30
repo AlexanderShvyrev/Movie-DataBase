@@ -37,7 +37,7 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
+  
   min-height: 100%;
 }
 
@@ -83,4 +83,30 @@ h3{
   
 }
 
+.scroll::-webkit-scrollbar {
+  width: 11px;
+}
+.scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.scroll::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+#map{
+  height:100%;
+  margin:0px;
+  padding:0px;
+}
+
+#logo{
+  float: right;
+  height:120px;
+}
+
+.logo{
+  float:right;
+  height:250px;
+}
 

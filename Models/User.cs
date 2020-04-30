@@ -46,5 +46,9 @@ namespace MyProject.Models
         public string Confirm {get;set;}
 
         public List<Comment> CreatedComments {get;set;}
+        public List<Banana> MyActions{get; set;}
+        public List<Message> CreatedMessages {get;set;}
+
+        public List<MComment> MComments {get;set;}
     }
 }

@@ -1,12 +1,13 @@
 @model LoginUser
-   
-</nav>
+
+<img class="logo" src="~/images/movieguru.png">
 
 <p style="color:red">@ViewBag.Message</p>
-<div class="jumbotron m-5 col-7 pl-5 ">
+<div class="jumbotron m-5 col-md-7 pl-5 ">
     <h4 style="text-align:center;">Please login</h4>
     <hr>
-    <form class="col-6" asp-action="Login" method="post">
+
+    <form class="col-md-6" asp-action="Login" method="post">
     <div class="form-group">
         <span style="color:red;" asp-validation-for="Email"></span>
         <label asp-for="Email"></label>
@@ -17,7 +18,12 @@
         <label asp-for="Password"></label>
         <input asp-for="Password" class="form-control">
     </div>
-    <input type="submit" class= "btn btn-info mb-3" value="Sign up">
+    <input type="submit" class= "btn btn-outline-info mb-3" value="Sign up">
     <p>Don't have an account? <a href="/">Register</a></p>
+    @* <fb:login-button 
+    scope="public_profile,email"
+    onlogin="checkLoginState();">
+    </fb:login-button><br>
+    <h3>this button is not 100% done</h3> *@
 </form>
 </div>

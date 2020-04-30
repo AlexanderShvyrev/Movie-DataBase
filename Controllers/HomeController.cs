@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using cloudscribe.Pagination.Models;
+
 
 namespace MyProject.Controllers
 {
@@ -26,7 +28,18 @@ namespace MyProject.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            var x = View();
+            for(var i=0;i<10;i++){
+            Console.WriteLine(x);
+            };
+            
+            return x;
+        }
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+
+            return View(dbContext.Movies.ToList());
         }
         [HttpPost("register")]
         public IActionResult Register(User newUser)
@@ -97,11 +110,11 @@ namespace MyProject.Controllers
         [HttpGet("success")]
         public IActionResult Dash()
         {
-            
+            List<Banana> watchlist = dbContext.Bananas.Include(b => b.NavMovie).ToList();
             int? userid = HttpContext.Session.GetInt32("UserId");
             ViewBag.AllMovies=dbContext.Movies
                                 .Include(m=>m.Comments)
-                                .ThenInclude(u=>u.NavUser)
+                                .ThenInclude(u=>u.NavCUser)
                                 .ToList();
             if (userid == null)
             {
@@ -109,15 +122,16 @@ namespace MyProject.Controllers
             }
             else
             {
-                ViewBag.AllMovies=dbContext.Movies
-                                .Include(m=>m.Comments)
-                                .ThenInclude(u=>u.NavUser)
-                                .OrderByDescending(m=>m.MovieId)
-                                .Take(3)
-                                .ToList();
+                // ViewBag.AllMovies=dbContext.Movies
+                //                 .Include(m=>m.Comments)
+                //                 .ThenInclude(u=>u.NavCUser)
+                //                 .OrderByDescending(m=>m.MovieId)
+                //                 .Take(3)
+                //                 .ToList();
                 ViewBag.FirstName=HttpContext.Session.GetString("FirstName");
-                ViewBag.UserId = (int) userid;
-                return View("Dash");
+                ViewBag.User = dbContext.Users.Include(u=>u.MyActions).ThenInclude(b=>b.NavMovie).ThenInclude( m => m.Comments ).ThenInclude( c => c.NavCUser ).FirstOrDefault(u=>u.UserId==userid);
+                ViewBag.UserId=userid;
+                return View(watchlist);
             }
         }
         [HttpGet("logout")]
@@ -137,6 +151,7 @@ namespace MyProject.Controllers
         {
             if(ModelState.IsValid)
             {
+                User userInDb=dbContext.Users.FirstOrDefault(u=>u.UserId==(int)HttpContext.Session.GetInt32("UserId"));
                 string uniqueFileName=null;
                 if (model.Image != null)
                 {
@@ -153,6 +168,7 @@ namespace MyProject.Controllers
                     Rating=model.Rating,
                     Stars=model.Stars,
                     Description=model.Description,
+                    Creator=userInDb,
                     ImagePath=uniqueFileName
                 };
                 dbContext.Add(newMovie);
@@ -166,12 +182,59 @@ namespace MyProject.Controllers
             
         }
 
-        [HttpGet("browse")]
-        public IActionResult Browse()
+        
+        public IActionResult Browse2()
         {
-            List<Movie>AllMovies=dbContext.Movies.OrderByDescending(m => m.CreatedAt).ToList();
-            return View(AllMovies);
+            User userInDb=dbContext.Users.FirstOrDefault(u=>u.UserId==(int)HttpContext.Session.GetInt32("UserId"));
+            List<Movie> AllMovies=dbContext.Movies
+                                .Include(m=>m.Creator)
+                                .Include(m=>m.Comments)
+                                .Include(m=>m.Actions)
+                                .ThenInclude(u=>u.NavUser)
+                                .OrderByDescending(m => m.CreatedAt).ToList();
+            ViewBag.AllUsers = dbContext.Users.ToList();
+            if (userInDb == null)
+            {
+                return View("Login");
+            }
+            else
+            {
+                ViewBag.User=userInDb;
+                return View(AllMovies);
+            }
         }
+        [HttpGet("browse")]
+        public IActionResult Browse(int pageNumber=1, int pageSize=3)
+        {
+            int ExcludeRecords=(pageSize * pageNumber)-pageSize;
+            User userInDb=dbContext.Users.FirstOrDefault(u=>u.UserId==(int)HttpContext.Session.GetInt32("UserId"));
+            var AllMovies=dbContext.Movies
+                                .Include(m=>m.Creator)
+                                .Include(m=>m.Comments)
+                                .Include(m=>m.Actions)
+                                .ThenInclude(u=>u.NavUser)
+                                .OrderBy(m => m.Title).Skip(ExcludeRecords).Take(pageSize);
+            ViewBag.AllUsers = dbContext.Users.ToList();
+            var result=new PagedResult<Movie>
+            {
+                Data=AllMovies.AsNoTracking().ToList(),
+                TotalItems=dbContext.Movies.Count(),
+                PageNumber=pageNumber,
+                PageSize=pageSize
+            };
+            if (userInDb == null)
+            {
+                return View("Login");
+            }
+            else
+            {
+                ViewBag.User=userInDb;
+                return View(result);
+            }
+        }
+
+
+
         [HttpGet("search")]
         public IActionResult Search()
         {
@@ -184,24 +247,214 @@ namespace MyProject.Controllers
             return View();
         }
 
+        [HttpPost("CreateComment/{MovieId}")]
 
+        public IActionResult CreateComment (Comment new_comment, int MovieId)
+        {
+            if(ModelState.IsValid)
+            {
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                
+                dbContext.Comments.Add(new_comment);
+                new_comment.UserId=(int)userIndb;
+                new_comment.MovieId=MovieId;
+                dbContext.SaveChanges();
+                return Redirect("/success");
+            }
+            else
+            {
+                ViewBag.AllMovies=dbContext.Movies
+                                .Include(m=>m.Comments)
+                                .ThenInclude(u=>u.NavCUser)
+                                .OrderByDescending(m=>m.MovieId)
+                                .ToList();
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                ViewBag.User = dbContext.Users.Include(u=>u.MyActions).ThenInclude(b=>b.NavMovie).ThenInclude( m => m.Comments ).ThenInclude( c => c.NavCUser ).FirstOrDefault(u=>u.UserId==userIndb);
+            return View("Dash");
+            }
+        }
+    
+        [HttpPost("Comment/{MovieId}")]
+        public IActionResult Comment (Comment new_comment, int MovieId)
+        {
+            if (ModelState.IsValid)
+            {
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                
+                dbContext.Comments.Add(new_comment);
+                new_comment.UserId=(int)userIndb;
+                new_comment.MovieId=MovieId;
+                dbContext.SaveChanges();
+                return Redirect("/browse");
+            }
+            else
+            {
+                ViewBag.AllMovies=dbContext.Movies
+                                .Include(m=>m.Comments)
+                                .ThenInclude(u=>u.NavCUser)
+                                .OrderByDescending(m=>m.MovieId)
+                                .ToList();
+            return View("Browse");
+            }
+        }
 
+        [HttpGet("add/{MovieId}/{UserId}")]
+        public IActionResult AddToWatchlist(int MovieId, int UserId)
+        {
+            ViewBag.Content=dbContext.Movies.Include(m=>m.Comments).ThenInclude(c=>c.Content).Where(m=>m.MovieId==MovieId);
+            Banana added=new Banana();
+            added.UserId=UserId;
+            added.MovieId=MovieId;
+            dbContext.Bananas.Add(added);
+            dbContext.SaveChanges();
+        
+            return RedirectToAction("Browse");
+        }
+        [HttpGet("delete/{MovieId}")]
+        public IActionResult Delete(int MovieId)
+        {
+            Movie ToBeDeleted=dbContext.Movies.FirstOrDefault(m=>m.MovieId==MovieId);
+            dbContext.Movies.Remove(ToBeDeleted);
+            dbContext.SaveChanges();
+            return RedirectToAction("Browse");
+        }
 
+        [HttpGet("unwatch/{MovieId}/{UserId}")]
+        public IActionResult UnWatch(int MovieId, int UserId)
+        {
+            Banana toUnWatch=dbContext.Bananas.FirstOrDefault(b=>b.UserId==UserId && b.MovieId==MovieId);
+            dbContext.Bananas.Remove(toUnWatch);
+            dbContext.SaveChanges();
+            return RedirectToAction("Browse");
+        }
 
-
-
-
-
-
-        public IActionResult Privacy()
+        [HttpGet("google")]
+        public IActionResult Google()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost("search")]
+
+        public IActionResult Search(Query data)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            List<Movie> movies = new List<Movie>();
+            if(data.query != "all")
+            {
+                movies = dbContext.Movies.Where(m =>m.Title.Contains(data.query)).ToList();
+            }
+            return View("_Filter", movies);
         }
+
+
+        [HttpGet("forum")]
+        public IActionResult Forum()
+        {
+            User userInDb=dbContext.Users.FirstOrDefault(u=>u.UserId==(int)HttpContext.Session.GetInt32("UserId"));
+            ViewBag.AllMessages = dbContext.Messages
+                                        .Include(fd=>fd.MessageCreator)
+                                        .Include(ds=>ds.PostedComments)
+                                        .ThenInclude(u=>u.MUser)
+                                        .OrderByDescending(f=>f.MessageId)
+                                        .ToList();
+            if(userInDb==null)
+            {
+                return RedirectToAction("Logout");
+            }
+            else
+            {
+                ViewBag.AllMessages = dbContext.Messages
+                                        .Include(fd=>fd.MessageCreator)
+                                        .Include(ds=>ds.PostedComments)
+                                        .ThenInclude(u=>u.MUser)
+                                        .OrderByDescending(f=>f.MessageId)
+                                        .ToList();
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                ViewBag.User = dbContext.Users.Include(u=>u.MyActions).ThenInclude(b=>b.NavMovie).ThenInclude( m => m.Comments ).ThenInclude( c => c.NavCUser ).FirstOrDefault(u=>u.UserId==userIndb);
+            return View();
+            }
+        }
+        [HttpPost("Forum")]
+        public IActionResult CreateMessage(Message NewMessage)
+        {
+            if (ModelState.IsValid){
+                int? userInDb=HttpContext.Session.GetInt32("UserId");
+                NewMessage.UserId=(int)userInDb;
+                dbContext.Messages.Add(NewMessage);
+                dbContext.SaveChanges();
+                return Redirect("/forum");
+            }
+            else{
+                ViewBag.AllMessages = dbContext.Messages
+                                    .Include(fd=>fd.MessageCreator)
+                                    .Include(ds=>ds.PostedComments)
+                                    .ThenInclude(u=>u.MUser)
+                                    .OrderByDescending(f=>f.MessageId)
+                                    .ToList();
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                ViewBag.User = dbContext.Users.Include(u=>u.MyActions).ThenInclude(b=>b.NavMovie).ThenInclude( m => m.Comments ).ThenInclude( c => c.NavCUser ).FirstOrDefault(u=>u.UserId==userIndb);
+                
+                return View("Forum");
+            }
+        }
+        
+
+
+        [HttpPost("PostComment/{MessageId}")]
+
+        public IActionResult ForumComments(MComment new_comment, int MessageId)
+        {
+            if (ModelState.IsValid)
+            {
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                
+                dbContext.MComments.Add(new_comment);
+                new_comment.UserId=(int)userIndb;
+                new_comment.MessageId=MessageId;
+                dbContext.SaveChanges();
+                return Redirect("/forum");
+            }
+            else
+            {
+                ViewBag.AllMessages = dbContext.Messages
+                                        .Include(fd=>fd.MessageCreator)
+                                        .Include(ds=>ds.PostedComments)
+                                        .ThenInclude(u=>u.MUser)
+                                        .OrderByDescending(f=>f.MessageId)
+                                        .ToList();
+                int? userIndb=HttpContext.Session.GetInt32("UserId");
+                ViewBag.User = dbContext.Users.Include(u=>u.MyActions).ThenInclude(b=>b.NavMovie).ThenInclude( m => m.Comments ).ThenInclude( c => c.NavCUser ).FirstOrDefault(u=>u.UserId==userIndb);
+
+            return View("Forum");
+            }
+        }
+
+        [HttpGet("destroy/{MessageId}")]
+        public IActionResult Delete_Message(int MessageId)
+        {
+            Message ToBeDeleted=dbContext.Messages.FirstOrDefault(m=>m.MessageId==MessageId);
+            dbContext.Messages.Remove(ToBeDeleted);
+            dbContext.SaveChanges();
+            return RedirectToAction("Forum");
+        }
+        [HttpGet("kill/{MCommentId}")]
+        public IActionResult Delete_Comment(int MCommentId)
+        {
+            MComment ToBeDeleted=dbContext.MComments.FirstOrDefault(c=>c.MCommentId==MCommentId);
+            dbContext.MComments.Remove(ToBeDeleted);
+            dbContext.SaveChanges();
+            return RedirectToAction("Forum");
+        }
+
+        [HttpGet("bomb/{CommentId}")]
+
+        public IActionResult Bomb_Comment(int CommentId)
+        {
+            Comment ToBeDeleted=dbContext.Comments.FirstOrDefault(c=>c.CommentId==CommentId);
+            dbContext.Comments.Remove(ToBeDeleted);
+            dbContext.SaveChanges();
+            return RedirectToAction("Dash");
+        }
+
     }
 }

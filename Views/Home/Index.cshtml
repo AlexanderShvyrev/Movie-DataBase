@@ -1,12 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<img class="logo" src="~/images/movieguru.png">
 @model User
-
+        
     <div class="jumbotron m-5 col-7 pl-5 ">
         <h3>Welcome to a wonderful world of movies</h3>
-        <a href="signup" class="btn btn-sm btn-info m-2">Login</a>
+        
         <form class="col-5" asp-action="Register" method="post">
         <div class="form-group">
             <span style="color:red;" asp-validation-for="FirstName"></span>
@@ -33,6 +33,8 @@
             <label asp-for="Confirm"></label>
             <input asp-for="Confirm" class="form-control">
         </div>
-        <input type="submit" class= "btn btn-info" value="Sign up">
+        <input type="submit" class= "btn btn-outline-info" value="Sign up"><br><br> Already have an account?
+        
+        <a href="signup" class="btn btn btn-outline-info m-2">Login</a>
     </form>
     </div>

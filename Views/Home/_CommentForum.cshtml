@@ -1,0 +1,16 @@
+@model MComment
+
+
+<div class="row">
+<form action="/PostComment/@Model.MessageId" class="col-md-4" method="post">
+    <p>
+        <p><span asp-validation-for="MContent" class="text-danger"></span></p>
+        <p>
+        <textarea asp-for="MContent" class="form-control" id="" cols="10" rows="2"></textarea>
+        </p>
+        <p>
+        <input type="submit" value="Post a Comment" class="btn btn-block btn-outline-success">
+        </p>
+    </p>
+</form>
+</div>

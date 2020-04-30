@@ -1,0 +1,113 @@
+@using MyProject
+@using MyProject.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, cloudscribe.Web.Pagination
+
+@{Layout = null;}
+@model List<Movie>
+
+
+<div class="row justify-content-center text-primary">
+        @foreach (var m in Model)
+        {
+            var ImagePath="~/images/" + (m.ImagePath ?? "skitterphoto.jpg");
+            <div class="card-group m-2 p-2" style="width: 22.5rem;">
+                <div class="card border-success mb-3 p-3">
+                    <div class="card-title" style="text-align:center;" >
+                        <h4>@m.Title</h4>
+                    </div>
+                    <div class="card m-1 p-1">
+                        <img class="imageThumbnail-img-top img-fluid" src='@ImagePath' asp-append-version="true"/>
+                    </div>
+                    <br>
+                    
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                Year
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    @m.Year
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                    Director
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    @m.Director
+                                </div>
+                            </div>
+                        </div>
+
+                        @{
+                            string Rating=$"{m.Rating}";
+                        }
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                    Rating
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    @Rating.Substring(0,3)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                    Cast:
+                                </a>
+                            </div>
+                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="scroll" style="height:80px; overflow:auto;">
+                                        <p>@m.Stars</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                                    Description:
+                                </a>
+                            </div>
+                            <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="scroll" style="height:80px; overflow:auto;">
+                                        <p>@m.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                                    Uploaded on
+                                </a>
+                            </div>
+                            <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    @m.CreatedAt.ToShortDateString()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }

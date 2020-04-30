@@ -1,36 +1,146 @@
 
-@model Movie
+@model List<Banana>
 
 
 <div class="jumbotron p-0 pb-5 pl-5 pr-5">
     <partial name="_Nav"/>
-    <h4 style="text-align:center;">Welcome to All Moviezz database, @ViewBag.FirstName!</h4>
-    <h5 style="text-align:center;">Here are 3 recently uploaded movies:</h5>
-    <hr>
-        @foreach(var m in ViewBag.AllMovies)
-        {
-            var ImagePath="~/images/" + (m.ImagePath ?? "skitterphoto.jpg");
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="card-title"><h4>@m.Title</h4></div>
-                    <div class="card-image">
-                        <img class="imageThumbnail" src='@ImagePath' asp-append-version="true"/>
+    <h3 style="text-align:center;">Welcome to MovieGuru, @ViewBag.FirstName!</h3>
+    
+</div>
+
+@if (ViewBag.User.MyActions.Count == 0)
+    {
+    <h4>Your watchlist is currently empty. Click <a href="Browse">here</a> to browse movies</h4>
+    }
+
+    
+<div class="row justify-content-center text-primary">
+
+@foreach(var b in ViewBag.User.MyActions)
+{
+    var ImagePath="~/images/" + (b.NavMovie.ImagePath ?? "skitterphoto.jpg");
+    <div class="card-group m-2 p-2" style="width: 22.5rem;">
+        <div class="card border-success mb-3 p-3">
+            <div class="card-title" style="text-align:center;"><h4>@b.NavMovie.Title</h4></div>
+            <div class="card m-1 p-1">
+                <img class="imageThumbnail-img-top img-fluid" src='@ImagePath' asp-append-version="true"/>
+            </div>
+            <br>
+
+            <div id="accordion">
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        Year
+                    </a>
                     </div>
-                    <p><strong>Year </strong>@m.Year</p>
-                    <p><strong>Director </strong>@m.Director</p>
-                    @{
-                        string Rating=$"{m.Rating}";
-                    }
-                    <p><strong>Rating </strong>@Rating.Substring(0,3)</p>
-                    <p><strong>Cast </strong>@m.Stars</p>
-                    <p><strong>Description </strong>@m.Description</p>
-                    <p><strong>Uploaded on </strong>@m.CreatedAt.ToShortDateString()</p>
-                    foreach (var c in m.Comments)
-                    {
-                        <p>@c.Content</p>
-                    }
-                    <partial name="_Comment" model="new Comment() {MovieId = m.MovieId}"></partial>
+                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        @b.NavMovie.Year
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                        Director
+                    </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        @b.NavMovie.Director
+                    </div>
+                    </div>
+                </div>
+
+                @{
+                string Rating=$"{b.NavMovie.Rating}";
+                }
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                        Rating
+                    </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        @Rating.Substring(0,3)
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                        Cast:
+                    </a>
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="scroll" style="height:80px; overflow:auto;">
+                            <p>@b.NavMovie.Stars</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                        Description:
+                    </a>
+                    </div>
+                    <div id="collapseFive" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="scroll" style="height:80px; overflow:auto;">
+                            <p>@b.NavMovie.Description</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                        Uploaded on
+                    </a>
+                    </div>
+                    <div id="collapseSix" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        @b.NavMovie.CreatedAt.ToShortDateString()
+                    </div>
+                    </div>
                 </div>
             </div>
-        }
+            <br>
+            <a class="btn btn-outline-info" href="/unwatch/@b.NavMovie.MovieId/@ViewBag.UserId">Remove From Watchlist</a><br>
+
+            <button class="btn btn-outline-warning" id="@b.NavMovie.MovieId" onclick="toggleComments(this)">Hide/Show Comments</button><br>
+            <div id="@b.NavMovie.MovieId/Comments">
+                
+                @foreach(var c in b.NavMovie.Comments)
+                {   
+                    
+                    <p id="comments" class="text-info">@c.NavCUser.FirstName says:</p> <p> @c.Content 
+                    @if(c.NavCUser.UserId == ViewBag.UserId){
+                        <a href="/bomb/@c.CommentId">&times</a>
+                    }
+                    </p>
+                    
+                }
+
+            </div>
+            <partial name="_BrowseComment" model="new Comment() {MovieId = b.MovieId}"/>
+            
+        </div>
+    </div>
+}
 </div>
+
+
+
+
+

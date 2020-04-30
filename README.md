@@ -1,0 +1,1 @@
+You'll have to get your own api key in order to have google maps working

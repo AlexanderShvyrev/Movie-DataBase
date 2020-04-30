@@ -24,14 +24,15 @@ namespace MyProject.Models
         public string Stars{get; set;}
         [Required]
         public string Description{get; set;}
+        public int UserId{get; set;}
         // [Required]
         public string ImagePath{get; set;}
-
+        public User Creator{get; set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
 
         public List<Comment> Comments {get;set;}
-
+        public List<Banana> Actions{get; set;}
 
     }
 }

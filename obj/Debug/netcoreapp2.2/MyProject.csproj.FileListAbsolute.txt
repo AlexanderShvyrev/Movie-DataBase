@@ -79,3 +79,11 @@
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.dll
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.pdb
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/MyProject.csproj.CopyComplete
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_Comment.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_BrowseComment.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Google.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_NavGoogle.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_Filter.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Forum.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_CommentForum.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavForum.g.cshtml.cs

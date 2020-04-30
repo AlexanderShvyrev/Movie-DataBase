@@ -10,18 +10,17 @@ namespace MyProject.Models
 
         public int CommentId {get;set;}
         [Required]
-        [MinLength(25)]
-
+        [Display (Name = "Comment must be at least 5 characters long")]
         public string Content {get;set;}
+        public int UserId{get; set;}
+        public int MovieId{get; set;}
+        public User NavCUser{get; set;}
+        public Movie NavCMovie{get; set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
 
-        public int UserId {get;set;}
-        public int MovieId{get; set;}
-
-        public User NavUser {get;set;}
-        public Movie NavMovie{get; set;}
+        
 
     }
 }
