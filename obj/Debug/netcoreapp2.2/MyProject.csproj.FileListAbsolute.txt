@@ -87,3 +87,4 @@
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Forum.g.cshtml.cs
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/_CommentForum.g.cshtml.cs
 /Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_NavForum.g.cshtml.cs
+/Users/alexandershvyrev/Desktop/MyProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Team.g.cshtml.cs

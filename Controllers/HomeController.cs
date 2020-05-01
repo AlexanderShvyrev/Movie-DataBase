@@ -456,5 +456,11 @@ namespace MyProject.Controllers
             return RedirectToAction("Dash");
         }
 
+        [HttpGet("team")]
+        public IActionResult Team()
+        {
+            return View();
+        }
+
     }
 }

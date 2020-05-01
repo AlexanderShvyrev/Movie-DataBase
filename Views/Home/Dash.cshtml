@@ -5,7 +5,17 @@
 <div class="jumbotron p-0 pb-5 pl-5 pr-5">
     <partial name="_Nav"/>
     <h3 style="text-align:center;">Welcome to MovieGuru, @ViewBag.FirstName!</h3>
-    
+    <div class="clock">
+    <div class="hour">
+        <div class="hr" id="hr"></div>
+    </div>
+    <div class="min">
+        <div class="mn" id="mn"></div>
+    </div>
+    <div class="sec">
+        <div class="sc" id="sc"></div>
+    </div>
+</div>
 </div>
 
 @if (ViewBag.User.MyActions.Count == 0)
@@ -23,7 +33,7 @@
         <div class="card border-success mb-3 p-3">
             <div class="card-title" style="text-align:center;"><h4>@b.NavMovie.Title</h4></div>
             <div class="card m-1 p-1">
-                <img class="imageThumbnail-img-top img-fluid" src='@ImagePath' asp-append-version="true"/>
+                <img class="imageThumbnail-img-top img-fluid" id="zoom" src='@ImagePath' asp-append-version="true"/>
             </div>
             <br>
 
@@ -139,6 +149,8 @@
     </div>
 }
 </div>
+
+
 
 
 
