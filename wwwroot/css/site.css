@@ -58,8 +58,7 @@ h3{
   justify-content: center;
 }
 .imageThumbnail{
-  height:200px;
-  width:auto;
+  width: 200px;
 }
 
 #movies img, #movie img{
@@ -111,15 +110,17 @@ h3{
 }
 
 
-#zoom:hover {
+
+
+/* #zoom:hover {
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
-}
+} */
 
 .clock{
-  width:350px;
-  height:350px;
+  width:220px;
+  height:220px;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -175,7 +176,7 @@ h3{
   content: '';
   position: absolute;
   width: 8px;
-  height: 80px;
+  height: 75px;
   background: #ff105e;
   z-index: 10;
   border-radius: 6px 6px 0 0;
@@ -195,7 +196,7 @@ h3{
   content: '';
   position: absolute;
   width: 2px;
-  height: 150px;
+  height: 90px;
   background: #fff;
   z-index: 12;
   border-radius: 6px 6px 0 0;
@@ -258,6 +259,7 @@ h3{
   filter: blur(40px);
 }
 
+
 /* .box:before
 .box:after
 {
@@ -306,4 +308,31 @@ h3{
   color: #fff;
   font-weight: 200;
   letter-spacing: 2px;
+}
+.card:before{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #00bcd4;
+  z-index: -1;
+}
+.card:after{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #00bcd4;
+  z-index: -2;
+  filter: blur(30px);
+}
+.card{
+  position: relative;
+  display: flex;
+  background: 	#073642;
+  transition: 0.5s;
 }

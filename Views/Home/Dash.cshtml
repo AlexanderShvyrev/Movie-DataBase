@@ -1,22 +1,30 @@
 
+
+
 @model List<Banana>
 
 
 <div class="jumbotron p-0 pb-5 pl-5 pr-5">
     <partial name="_Nav"/>
-    <h3 style="text-align:center;">Welcome to MovieGuru, @ViewBag.FirstName!</h3>
-    <div class="clock">
-    <div class="hour">
-        <div class="hr" id="hr"></div>
-    </div>
-    <div class="min">
-        <div class="mn" id="mn"></div>
-    </div>
-    <div class="sec">
-        <div class="sc" id="sc"></div>
-    </div>
+    <h3 style="text-align:center;">Welcome to MovieGuru,  @ViewBag.FirstName!</h3><br>
+    <div class="row justify-content-center">
+        <div class="span4">
+            <div class="clock">
+                <div class="hour">
+                    <div class="hr" id="hr"></div>
+                </div>
+                <div class="min">
+                    <div class="mn" id="mn"></div>
+                </div>
+                <div class="sec"> 
+                    <div class="sc" id="sc"></div>
+                </div>
+            </div>  
+        </div>   
+    </div>   
 </div>
-</div>
+
+
 
 @if (ViewBag.User.MyActions.Count == 0)
     {
@@ -30,124 +38,125 @@
 {
     var ImagePath="~/images/" + (b.NavMovie.ImagePath ?? "skitterphoto.jpg");
     <div class="card-group m-2 p-2" style="width: 22.5rem;">
-        <div class="card border-success mb-3 p-3">
-            <div class="card-title" style="text-align:center;"><h4>@b.NavMovie.Title</h4></div>
-            <div class="card m-1 p-1">
-                <img class="imageThumbnail-img-top img-fluid" id="zoom" src='@ImagePath' asp-append-version="true"/>
-            </div>
-            <br>
-
-            <div id="accordion">
-
-                <div class="card">
-                    <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        Year
-                    </a>
-                    </div>
-                    <div id="collapseOne" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        @b.NavMovie.Year
-                    </div>
-                    </div>
+        @* <div class="boxx">        *@
+            <div class="card border-success  p-3">
+                <div class="card-title" style="text-align:center;"><h4>@b.NavMovie.Title</h4></div>
+                <div class="card m-1 p-1">
+                    <img class="imageThumbnail-img-top img-fluid" id="zoom" src='@ImagePath' asp-append-version="true"/>
                 </div>
+                <br>
 
-                <div class="card">
-                    <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                        Director
-                    </a>
-                    </div>
-                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        @b.NavMovie.Director
-                    </div>
-                    </div>
-                </div>
+                <div id="accordion">
 
-                @{
-                string Rating=$"{b.NavMovie.Rating}";
-                }
-
-                <div class="card">
-                    <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                        Rating
-                    </a>
-                    </div>
-                    <div id="collapseThree" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        @Rating.Substring(0,3)
-                    </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                        Cast:
-                    </a>
-                    </div>
-                    <div id="collapseFour" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="scroll" style="height:80px; overflow:auto;">
-                            <p>@b.NavMovie.Stars</p>
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                            Year
+                        </a>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @b.NavMovie.Year
+                        </div>
                         </div>
                     </div>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
-                        Description:
-                    </a>
-                    </div>
-                    <div id="collapseFive" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="scroll" style="height:80px; overflow:auto;">
-                            <p>@b.NavMovie.Description</p>
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                            Director
+                        </a>
+                        </div>
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @b.NavMovie.Director
+                        </div>
                         </div>
                     </div>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
-                        Uploaded on
-                    </a>
-                    </div>
-                    <div id="collapseSix" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        @b.NavMovie.CreatedAt.ToShortDateString()
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <a class="btn btn-outline-info" href="/unwatch/@b.NavMovie.MovieId/@ViewBag.UserId">Remove From Watchlist</a><br>
-
-            <button class="btn btn-outline-warning" id="@b.NavMovie.MovieId" onclick="toggleComments(this)">Hide/Show Comments</button><br>
-            <div id="@b.NavMovie.MovieId/Comments">
-                
-                @foreach(var c in b.NavMovie.Comments)
-                {   
-                    
-                    <p id="comments" class="text-info">@c.NavCUser.FirstName says:</p> <p> @c.Content 
-                    @if(c.NavCUser.UserId == ViewBag.UserId){
-                        <a href="/bomb/@c.CommentId">&times</a>
+                    @{
+                    string Rating=$"{b.NavMovie.Rating}";
                     }
-                    </p>
-                    
-                }
 
-            </div>
-            <partial name="_BrowseComment" model="new Comment() {MovieId = b.MovieId}"/>
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                            Rating
+                        </a>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @Rating.Substring(0,3)
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                            Cast:
+                        </a>
+                        </div>
+                        <div id="collapseFour" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="scroll" style="height:80px; overflow:auto;">
+                                <p>@b.NavMovie.Stars</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                            Description:
+                        </a>
+                        </div>
+                        <div id="collapseFive" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="scroll" style="height:80px; overflow:auto;">
+                                <p>@b.NavMovie.Description</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                            Uploaded on
+                        </a>
+                        </div>
+                        <div id="collapseSix" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @b.NavMovie.CreatedAt.ToShortDateString()
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <a class="btn btn-outline-info" href="/unwatch/@b.NavMovie.MovieId/@ViewBag.UserId">Remove From Watchlist</a><br>
+
+                <button class="btn btn-outline-warning" id="@b.NavMovie.MovieId" onclick="toggleComments(this)">Hide/Show Comments</button><br>
+                <div id="@b.NavMovie.MovieId/Comments">
+                    
+                    @foreach(var c in b.NavMovie.Comments)
+                    {   
+                        
+                        <p id="comments" class="text-info">@c.NavCUser.FirstName says:</p> <p> @c.Content 
+                        @if(c.NavCUser.UserId == ViewBag.UserId){
+                            <a href="/bomb/@c.CommentId">&times</a>
+                        }
+                        </p>
+                        
+                    }
+
+                </div>
+                <partial name="_BrowseComment" model="new Comment() {MovieId = b.MovieId}"/>
             
-        </div>
+        </div>  
     </div>
-}
+}       
 </div>
 
 
